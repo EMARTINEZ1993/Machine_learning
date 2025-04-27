@@ -4,58 +4,15 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario de Diagnóstico</title>
-    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+    <title>Formulario Diagnóstico</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
     <div class="container">
         <h1>Formulario de Diagnóstico Médico</h1>
-        <form action="/diagnostico/" method="post">
+        <form method="post">
             {% csrf_token %}
-            <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" name="nombre" required>
-
-            <label for="apellido">Apellido:</label>
-            <input type="text" id="apellido" name="apellido" required>
-
-            <label for="tipo_documento">Tipo de Documento:</label>
-            <select id="tipo_documento" name="tipo_documento" required>
-                <option value="CC">Cédula de Ciudadanía</option>
-                <option value="TI">Tarjeta de Identidad</option>
-                <option value="CE">Cédula de Extranjería</option>
-            </select>
-
-            <label for="numero_documento">Número de Documento:</label>
-            <input type="text" id="numero_documento" name="numero_documento" required>
-
-            <label for="fecha_nacimiento">Fecha de Nacimiento:</label>
-            <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" required>
-
-            <label for="peso">Peso (kg):</label>
-            <input type="number" id="peso" name="peso" required>
-
-            <label for="fuma">¿Fuma?</label>
-            <select id="fuma" name="fuma" required>
-                <option value="si">Sí</option>
-                <option value="no">No</option>
-            </select>
-
-            <label for="sexo">Sexo:</label>
-            <select id="sexo" name="sexo" required>
-                <option value="masculino">Masculino</option>
-                <option value="femenino">Femenino</option>
-            </select>
-
-            <label for="estatura">Estatura (cm):</label>
-            <input type="number" id="estatura" name="estatura" required>
-
-            <label for="antecedentes_medicos">Antecedentes Médicos:</label>
-            <textarea id="antecedentes_medicos" name="antecedentes_medicos" required></textarea>
-
-            <label for="sintomas_generales">Síntomas Generales:</label>
-            <textarea id="sintomas_generales" name="sintomas_generales" required></textarea>
-
+            {{ form.as_p }}
             <button type="submit">Enviar</button>
         </form>
     </div>

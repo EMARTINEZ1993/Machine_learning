@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Historial de Diagnósticos</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <h1>Historial de Diagnósticos</h1>
+
+    <table border="1" cellpadding="5">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Documento</th>
+                <th>Edad</th>
+                <th>Enfermedad Predicha</th>
+                <th>Fecha de Diagnóstico</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for diagnostico in diagnosticos %}
+            <tr>
+                <td>{{ diagnostico.nombre }} {{ diagnostico.apellido }}</td>
+                <td>{{ diagnostico.tipo_documento }} {{ diagnostico.numero_documento }}</td>
+                <td>
+                    {% with diagnostico.fecha_nacimiento as nacimiento %}
+                        {% with today|date:"Y"|add:"-0"|add:"0"|add:"0" as current_year %}
+                            {{ current_year|add:"-0"|add:"0"|add:"0" }} - {{ nacimiento|date:"Y" }}
+                        {% endwith %}
+                    {% endwith %}
+                </td>
+                <td>{{ diagnostico.enfermedad_predicha }}</td>
+                <td>{{ diagnostico.fecha_diagnostico|date:"d/m/Y H:i" }}</td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="5">No hay diagnósticos registrados.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <br>
+    <a href="{% url 'formulario' %}">Volver al formulario</a>
+</body>
+</html>

@@ -12,3 +12,4 @@ class DiagnosticoForm(forms.Form):
     estatura = forms.IntegerField()
     antecedentes_medicos = forms.CharField(widget=forms.Textarea)
     sintomas_generales = forms.CharField(widget=forms.Textarea)
+

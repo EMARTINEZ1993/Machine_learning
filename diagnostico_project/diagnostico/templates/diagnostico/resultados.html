@@ -4,10 +4,27 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Resultados del Diagnóstico</title>
+    <title>Resultado Diagnóstico</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-    <h1>Enfermedad Predicha</h1>
-    <p>La enfermedad más probable es: <strong>{{ enfermedad }}</strong></p>
+    <h1>Resultado del Diagnóstico</h1>
+
+    <h2>Datos del Paciente</h2>
+    <p><strong>Nombre:</strong> {{ nombre }} {{ apellido }}</p>
+    <p><strong>Tipo de Documento:</strong> {{ tipo_documento }}</p>
+    <p><strong>Número de Documento:</strong> {{ numero_documento }}</p>
+    <p><strong>Edad:</strong> {{ edad }} años</p>
+    <p><strong>Peso:</strong> {{ peso }} kg</p>
+    <p><strong>Sexo:</strong> {{ sexo }}</p>
+    <p><strong>Fuma:</strong> {{ fuma }}</p>
+    <p><strong>Estatura:</strong> {{ estatura }} cm</p>
+    <p><strong>Antecedentes Médicos:</strong> {{ antecedentes_medicos }}</p>
+    <p><strong>Síntomas Generales:</strong> {{ sintomas_generales }}</p>
+
+    <h2>Enfermedad Predicha</h2>
+    <p><strong>Resultado:</strong> {{ enfermedad }}</p>
+
+    <a href="{% url 'formulario' %}">Realizar otro diagnóstico</a>
 </body>
 </html>

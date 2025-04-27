@@ -1,16 +1,19 @@
-import pandas as pd
+from django.db import models
 
-# Simulación de un dataset con los campos mencionados
-data = {
-    "nombre": ["Juan", "Ana", "Pedro", "Maria"],
-    "edad": [45, 34, 23, 56],
-    "peso": [70, 60, 80, 90],
-    "fuma": ["si", "no", "si", "no"],
-    "sexo": ["masculino", "femenino", "masculino", "femenino"],
-    "antecedentes_medicos": ["ninguno", "diabetes", "hipertensión", "asma"],
-    "sintomas_generales": ["fiebre, dolor de cabeza", "fatiga, pérdida de peso", "dolor abdominal", "tos, dificultad para respirar"],
-    "enfermedad": ["Gripe", "Diabetes", "Gastroenteritis", "Neumonía"]
-}
+class Diagnostico(models.Model):
+    nombre = models.CharField(max_length=100)
+    apellido = models.CharField(max_length=100)
+    tipo_documento = models.CharField(max_length=2, choices=[('CC', 'Cédula de Ciudadanía'), ('TI', 'Tarjeta de Identidad'), ('CE', 'Cédula de Extranjería')])
+    numero_documento = models.CharField(max_length=20)
+    fecha_nacimiento = models.DateField()
+    peso = models.IntegerField()
+    fuma = models.CharField(max_length=2, choices=[('si', 'Sí'), ('no', 'No')])
+    sexo = models.CharField(max_length=10, choices=[('masculino', 'Masculino'), ('femenino', 'Femenino')])
+    estatura = models.IntegerField()
+    antecedentes_medicos = models.TextField()
+    sintomas_generales = models.TextField()
+    enfermedad_predicha = models.CharField(max_length=100)
+    fecha_diagnostico = models.DateTimeField(auto_now_add=True)
 
-# Convertirlo en un DataFrame
-df = pd.DataFrame(data)
+    def __str__(self):
+        return f"{self.nombre} {self.apellido} - {self.enfermedad_predicha}"
